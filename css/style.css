@@ -240,7 +240,7 @@
 =================================================================== */
 
 body {
-	background: #F5F5F5;
+	background: #ffffff;
 	color: #333;
 	border: none;
 	font-family: 'Open Sans', sans-serif;
@@ -774,6 +774,7 @@ ul.messages li .message {
 	padding: 10px;
 	position: relative;
 	margin-bottom: 28px;
+	border-radius: 10px;
 }
 	
 	.statbox .number {
@@ -791,21 +792,23 @@ ul.messages li .message {
 	}
 
 	.statbox .footer {
-		background: rgba(0,0,0,.1);
-		background-color: #19FFFFFF;
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
+		margin-left: 5px;
+		margin-right: 5px;
+		right: 0px; 
+		display: flex; 
+		justify-content: space-between; 
 		padding: 10px;
 	}
 	
-	.statbox .footer:hover {
-		background: rgba(0,0,0,.2);
-	}
-	
 	.statbox .footer a {
-		color: #fff;
-		text-decoration: none;
+		text-decoration: none; 
+		color: #fff; 
+		padding: 5px 10px; 
+		background-color: #3a4d60; 
+		border-radius: 5px; 
 	}
 
 .widget {
@@ -833,7 +836,6 @@ ul.messages li .message {
 	background: #fff !important;
 	margin-bottom: 18px;	
 	margin-right: 18px;	
-		
 }
 
 .box-header {
@@ -1663,9 +1665,11 @@ fieldset[disabled] .btn:active {
 }
 
 .btn-primary {
-  background-color: #578EBE;
-  border-color: #578EBE;
+    background-color: #578EBE;
+    border-color: #578EBE;
+    border-radius: 8px !important; 
 }
+
 
 .btn-primary:hover,
 .btn-primary:focus,
@@ -1740,6 +1744,7 @@ fieldset[disabled] .btn-danger:active {
 .btn-success {
   background-color: #43B5AD;
   border-color: #43B5AD;
+  border-radius: 8px !important; 
 }
 
 .btn-success:hover,
@@ -3053,4 +3058,57 @@ ul.messagesList li span.date {
 .form-group .form-control:focus {
 	border-bottom-color: #0056b3;
 	box-shadow: none;
+}
+
+.span-card {
+    height: 240px;
+	border: 2px solid #e0e0e0;
+	margin: 10px;
+  }
+
+  .span-card-img {
+	height: 180px;
+    object-fit: contain;
+	border-radius: 10px;
+  }
+
+  .divider-new{
+	display: flex;        
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+  .btnnew {
+    align-items: center; 
+    width: 100%; 
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnnew:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btnnew:active {
+    background-color: #2471a3;
+    transform: translateY(0);
+}
+
+.btnnew-small {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.btnnew-large {
+    padding: 15px 30px;
+    font-size: 18px;
 }

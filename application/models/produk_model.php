@@ -2,11 +2,23 @@
 
 class Produk_model extends CI_Model
 {
+    protected $table = 'produk';
 
-    function __construct()
+    public function __construct()
     {
-        //$this->load->model('akses_m');
+        parent::__construct();
     }
 
-    var $table = 'produk';
+    public function getAllProduct()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
+    public function getProductById($id)
+    {
+        $this->db->where('id_produk', $id);
+        $query = $this->db->get($this->table);
+        return $query->row_array();
+    }
 }

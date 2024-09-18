@@ -81,8 +81,8 @@
                     </div>
 
                     <div style="display: flex; align-items: center;">
-                        <label for="retype_password" style="width: 75px; margin-left: 75px;">Retype-Password</label>
-                        <div class="input-prepend" title="Password" style="flex-grow: 1;">
+                        <label for="retype_password" style="width: 75px; margin-left: 75px;">Retype Password</label>
+                        <div class="input-prepend" title="Retype Password" style="flex-grow: 1;">
                             <span class="add-on"><i class="halflings-icon lock"></i></span>
                             <input class="input-large span10" name="retype_password" id="retype_password" type="password" placeholder="Retype Password" style="color:black !important;" />
                         </div>
@@ -138,10 +138,10 @@
                     </div>
 
                     <div style="display: flex; align-items: center;">
-                        <label for="number" style="width: 75px; margin-left: 75px;">Contact No</label>
-                        <div class="input-prepend" title="Number" style="flex-grow: 1;">
+                        <label for="number" style="width: 75px; margin-left: 75px;">Contact Number</label>
+                        <div class="input-prepend" title="Contact Number" style="flex-grow: 1;">
                             <span class="add-on"><i class="halflings-icon phone"></i></span>
-                            <input class="input-large span10" name="number" id="number" type="tel" placeholder="Number" style="color:black !important;" />
+                            <input class="input-large span10" name="number" id="number" type="tel" placeholder="Contact Number" style="color:black !important;" />
                         </div>
                     </div>
 
@@ -158,7 +158,9 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
                     </div>
-
+                    <div style="display: flex; justify-content: center; align-items: center; margin-top:5px;">
+                        <a href="<?php echo site_url('authentication'); ?>" style="line-height: 40px;">Sudah ada Akun? Login disini</a>
+                    </div>
                     <?php echo form_close(); ?>
 
                 </div>

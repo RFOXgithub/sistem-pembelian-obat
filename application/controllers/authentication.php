@@ -15,7 +15,7 @@ class Authentication extends CI_Controller
         if ($session == FALSE) {
             redirect('authentication/process_login');
         } else {
-            redirect('welcome');
+            redirect('produk');
         }
     }
 
@@ -58,15 +58,15 @@ class Authentication extends CI_Controller
 
         if ($this->input->post()) {
             $this->form_validation->set_rules('username', 'Username', 'required|trim');
-            //$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
-            //$this->form_validation->set_rules('retype_password', 'Retype Password', 'required|matches[password]');
-            //$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            //$this->form_validation->set_rules('birth', 'Date of Birth', 'required');
-            //$this->form_validation->set_rules('gender', 'Gender', 'required');
-            //$this->form_validation->set_rules('address', 'Address', 'required');
-            //$this->form_validation->set_rules('city', 'City', 'required');
-            //$this->form_validation->set_rules('number', 'Contact No', 'required|numeric');
-            //$this->form_validation->set_rules('paypal', 'PayPal ID', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]');
+            $this->form_validation->set_rules('retype_password', 'Retype Password', 'required|matches[password]');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('birth', 'Date of Birth', 'required');
+            $this->form_validation->set_rules('gender', 'Gender', 'required');
+            $this->form_validation->set_rules('address', 'Address', 'required');
+            $this->form_validation->set_rules('city', 'City', 'required');
+            $this->form_validation->set_rules('number', 'Contact Number', 'required|numeric');
+            $this->form_validation->set_rules('id_paypal', 'PayPal ID', 'required');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('authentication/register', $data);
@@ -77,5 +77,15 @@ class Authentication extends CI_Controller
         } else {
             $this->load->view('authentication/register', $data);
         }
+    }
+
+    public function logout()
+    {
+        $this->session->set_userdata(array(
+            'username' => ''
+        ));
+
+        $this->session->sess_destroy();
+        redirect('authentication');
     }
 }
