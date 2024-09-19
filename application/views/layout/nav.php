@@ -8,14 +8,11 @@
             ?>
             <?php if ($pengguna->level != "Admin" && $pengguna->level != "Customer") : ?>
                 <li><a href="<?php echo base_url(); ?>"><i class="icon-dashboard"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-                <li><a href="<?php echo base_url(); ?>perbekalan"><i class="icon-barcode"></i><span class="hidden-tablet"> Inventaris</span></a></li>
-                <li><a href="<?php echo base_url(); ?>tracking"><i class="icon-search"></i><span class="hidden-tablet">Pencarian</span></a></li>
+                <li><a href="<?php echo base_url(); ?>tracking"><i class="icon-search"></i><span class="hidden-tablet"> Pencarian</span></a></li>
             <?php else : ?>
                 <li><a href="<?php echo base_url(); ?>"><i class="icon-dashboard"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-                <li><a href="<?php echo base_url(); ?>perbekalan"><i class="icon-barcode"></i><span class="hidden-tablet"> Inventaris</span></a></li>
                 <li><a href="<?php echo base_url(); ?>tracking"><i class="icon-search"></i><span class="hidden-tablet"> Pencarian</span></a></li>
-                <li><a href="<?php echo base_url(); ?>aset"><i class="icon-gift"></i><span class="hidden-tablet"> Jenis Aset</span></a></li>
-                <li><a href="<?php echo base_url(); ?>kategori"><i class="icon-reorder"></i><span class="hidden-tablet"> Kategori</span></a></li>
+                <li><a href="<?php echo base_url(); ?>aset"><i class="icon-gift"></i><span class="hidden-tablet">Katalog</span></a></li>
                 <li>
                     <a class="dropmenu" href="#"><i class="halflings-icon white chevron-right"></i><span class="hidden-tablet"> &nbsp;Pengguna</span></a>
                     <ul>
@@ -23,7 +20,6 @@
                         <li><a class="submenu" href="<?php echo base_url(); ?>akses"><i class="icon-key"></i><span class="hidden-tablet"> &nbsp; Akses</span></a></li>
                     </ul>
                 </li>
-                <li><a href="<?php echo base_url(); ?>gedung"><i class="icon-globe"></i><span class="hidden-tablet"> Gedung</span></a></li>
             <?php endif; ?>
 
         </ul>

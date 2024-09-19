@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Produk extends CI_Controller
+class Tracking extends CI_Controller
 {
     function __construct()
     {
@@ -12,21 +12,10 @@ class Produk extends CI_Controller
     public function index()
     {
         $data['title'] = "Product Page";
-        $data['product'] = $this->produk_model->getAllProduct();
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/nav');
-        $this->load->view('home/home', $data);
-        $this->load->view('layout/footer');
-    }
-
-    public function getProductDetails($id)
-    {
-        $data['product'] = $this->produk_model->getProductById($id);
-
-        $this->load->view('layout/header', $data);
-        $this->load->view('layout/nav');
-        $this->load->view('home/home_detail', $data);
+        $this->load->view('nav/tracking', $data);
         $this->load->view('layout/footer');
     }
 }

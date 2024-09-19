@@ -56,6 +56,7 @@
     <script src="<?php echo base_url() ?>js/retina.js"></script>
     <script src="<?php echo base_url() ?>js/custom.js"></script>
     <script src="<?php echo base_url() ?>js/script.js"></script>
+    <script src="<?php echo base_url() ?>js/filter.js"></script>
 </head>
 
 <body>
