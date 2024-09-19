@@ -33,6 +33,11 @@
                 </div>
             <?php endforeach; ?>
 
+            <div class="cart-icon">
+                <a href="<?php echo site_url('cart'); ?>">
+                    <img src="path/to/cart-icon.png" alt="Keranjang" />
+                </a>
+            </div>
 
         </div>
     </div>

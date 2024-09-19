@@ -71,16 +71,55 @@ class Authentication_model extends CI_Model
         );
         $this->db->insert('akses', $akses_data);
 
-        // Selesaikan transaksi
         $this->db->trans_complete();
 
-        // Periksa status transaksi
         if ($this->db->trans_status() === FALSE) {
-            // Jika terjadi kesalahan, rollback transaksi
             return FALSE;
         } else {
-            // Jika semuanya berhasil, transaksi berhasil
             return TRUE;
         }
+    }
+
+    function selectAll()
+    {
+        $this->db->select('*');
+        $this->db->from('akses');
+        $this->db->join('akun', 'akses.id_akun = akun.id_akun');
+
+        return $this->db->get()->result();
+    }
+
+    function deleteAkses($id)
+    {
+        $this->db->where('id_akun', $id);
+        $this->db->delete('akses');
+
+        $this->db->where('id_akun', $id);
+        $this->db->delete('akun');
+    }
+
+
+    function selectLevelAkses($id)
+    {
+        $this->db->select('level');
+        $this->db->from('akses');
+        $this->db->where(array('id_akun' => $id));
+        $id = $this->db->get()->row_array();
+        return $id;
+    }
+
+    function updateAkses($id)
+    {
+        $this->db->where('id_akun', $id)->update('akses', $_POST);
+    }
+
+    public function select()
+    {
+        $this->db->select('*');
+        $this->db->from('akses');
+        $this->db->join('akun', 'akses.id_akun = akun.id_akun');
+
+        $query = $this->db->get();
+        return $query->row();
     }
 }

@@ -1695,6 +1695,7 @@ fieldset[disabled] .btn-primary:active {
 .btn-warning {
   background-color: #DEB948;
   border-color: #DEB948;
+  border-radius: 8px !important; 
 }
 
 .btn-warning:hover,
@@ -1720,6 +1721,7 @@ fieldset[disabled] .btn-warning:active {
 .btn-danger {
   background-color: #E25A59;
   border-color: #E25A59;
+  border-radius: 8px !important; 
 }
 
 .btn-danger:hover,
@@ -1771,6 +1773,7 @@ fieldset[disabled] .btn-success:active {
 .btn-info {
   background-color: #5bc0de;
   border-color: #5bc0de;
+  border-radius: 8px !important; 
 }
 
 .btn-info:hover,
@@ -3156,4 +3159,23 @@ background-color: #0056b3;
 
 .detail-produk h1 {
     font-size: 25px; 
+}
+
+.cart-icon {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;  
+    z-index: 1000;
+}
+
+.cart-icon img {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.2s; 
+}
+
+.cart-icon img:hover {
+    transform: scale(1.1);
 }
