@@ -10,63 +10,61 @@
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
                 </div>
             </div>
-            <div class="box-content alerts">
-            </div>
             <div class="box-content">
                 <form class="form-horizontal" role="form" action="" method="post">
                     <fieldset>
                         <div class="control-group">
                             <label class="control-label">Username</label>
                             <div class="controls">
-                                <input type="text" class="span6" name="username" value="<?php echo $akun->username ?>" />
+                                <input type="text" class="span6" name="username" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Address</label>
                             <div class="controls">
-                                <input type="text" class="span6" name="address" value="<?php echo $akun->address ?>" />
+                                <input type="text" class="span6" name="address" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">City</label>
                             <div class="controls">
-                                <?= form_dropdown('city', $city_options, $akun->city, 'class="span6" id="selectError" data-rel="chosen"'); ?>
+                                <?= form_dropdown('city', $city_options, '', 'class="span6" id="selectError" data-rel="chosen"'); ?>
+                                <input type="text" class="span6" name="city" />
                             </div>
                         </div>
-
                         <div class="control-group">
                             <label class="control-label">Number</label>
                             <div class="controls">
-                                <input type="number" class="span6" name="number" value="<?php echo $akun->number ?>" />
+                                <input type="number" class="span6" name="number" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">ID Paypal</label>
                             <div class="controls">
-                                <input type="text" class="span6" name="id_paypal" value="<?php echo $akun->id_paypal ?>" />
+                                <input type="text" class="span6" name="id_paypal" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Birth</label>
                             <div class="controls">
-                                <input type="date" class="span6" name="birth" value="<?php echo date('Y-m-d', strtotime($akun->birth)) ?>" />
+                                <input type="date" class="span6" name="birth" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Gender</label>
                             <div class="controls">
                                 <label>
-                                    <input type="radio" name="gender" value="Male" <?php echo ($akun->gender == 'Male') ? 'checked' : ''; ?> /> Male
+                                    <input type="radio" name="gender" value="male" /> Male
                                 </label>
                                 <label>
-                                    <input type="radio" name="gender" value="Female" <?php echo ($akun->gender == 'Female') ? 'checked' : ''; ?> /> Female
+                                    <input type="radio" name="gender" value="female" /> Female
                                 </label>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Email</label>
                             <div class="controls">
-                                <input type="email" class="span6" name="email" value="<?php echo $akun->email ?>" />
+                                <input type="email" class="span6" name="email" />
                             </div>
                         </div>
                         <div class="form-actions">

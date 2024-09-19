@@ -15,6 +15,12 @@ class Produk_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getAllKatalog()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+
     function getProductById($id)
     {
         $this->db->select('*');
@@ -52,5 +58,29 @@ class Produk_model extends CI_Model
 
         $this->db->order_by('nama_produk', 'DESC');
         return $this->db->get()->result();
+    }
+
+    function delete($id)
+    {
+        $this->db->where('id_produk', $id);
+        $this->db->delete('produk');
+    }
+
+    function select($id)
+    {
+        return $this->db->get_where('produk', array('id_produk' => $id))->row();
+    }
+
+    function update($id, $gambar)
+    {
+        $nama_file = isset($gambar['file_name']) ? $gambar['file_name'] : null;
+
+        $data = $_POST;
+
+        if ($nama_file) {
+            $data['gambar'] = $nama_file;
+        }
+
+        $this->db->where('id_produk', $id)->update('produk', $data);
     }
 }

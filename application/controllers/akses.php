@@ -49,15 +49,6 @@ class Akses extends CI_Controller
         $this->load->view('layout/header', $data);
         $this->load->view('layout/nav');
 
-        $dbres = $this->db->order_by('id_akun', 'asc')->get('akun');
-
-        $ddmenu = array();
-        foreach ($dbres->result_array() as $tablerow) {
-            $ddmenu[$tablerow['id_akun']] = $tablerow['username'];
-        }
-
-        $data['options'] = $ddmenu;
-
         if ($_POST == NULL) {
             $data['akses'] = $this->authentication_model->select($id);
             $data['select_level'] = $this->authentication_model->selectLevelAkses($id);
@@ -69,21 +60,39 @@ class Akses extends CI_Controller
         }
     }
 
-    public function editAkun()
+    public function editAkun($id)
     {
         $data['title'] = "Data Akun";
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/nav');
 
+        $data['city_options'] = $this->authentication_model->getCityOptions();
+
         if ($_POST == NULL) {
-            $data['karyawan'] = $this->authentication_model->select($id);
-            $data['select_jabatan'] = $this->authentication_model->select_jabatan($id);
-            $data['select_gedung'] = $this->authentication_model->select_gedung($id);
-            $this->load->view('akses/editAkun', $data);
+            $data['akun'] = $this->authentication_model->selectAkun($id);
+            $this->load->view('nav/akun_edit', $data);
             $this->load->view('layout/footer');
         } else {
-            $this->authentication_model->update($id);
+            $this->authentication_model->updateAkun($id);
+            redirect('akses/index_akun');
+        }
+    }
+
+    function addAkun()
+    {
+        $data['title'] = "Data Akun";
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/nav');
+
+        $data['city_options'] = $this->authentication_model->getCityOptions();
+
+        if ($_POST == NULL) {
+            $this->load->view('nav/akun_add', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $this->authentication_model->insertAkun($_POST);
             redirect('akses/index_akun');
         }
     }

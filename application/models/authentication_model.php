@@ -113,13 +113,57 @@ class Authentication_model extends CI_Model
         $this->db->where('id_akun', $id)->update('akses', $_POST);
     }
 
-    public function select()
+    function updateAkun($id)
     {
-        $this->db->select('*');
+        $this->db->where('id_akun', $id)->update('akun', $_POST);
+    }
+
+    public function select($id)
+    {
+        $this->db->select('akun.username, akses.password, akses.level');
         $this->db->from('akses');
         $this->db->join('akun', 'akses.id_akun = akun.id_akun');
+        $this->db->where('akses.id_akun', $id);
 
         $query = $this->db->get();
         return $query->row();
+    }
+
+
+    function selectAkun($id)
+    {
+        return $this->db->get_where('akun', array('id_akun' => $id))->row();
+    }
+
+    function insertAkun($data)
+    {
+        $this->db->trans_start();
+
+        $akun_data = array(
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'birth' => $data['birth'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'number' => $data['number'],
+            'id_paypal' => $data['id_paypal'],
+        );
+        $this->db->insert('akun', $akun_data);
+
+        $akun_id = $this->db->insert_id();
+
+        $akses_data = array(
+            'id_akun' => $akun_id,
+        );
+        $this->db->insert('akses', $akses_data);
+
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 }

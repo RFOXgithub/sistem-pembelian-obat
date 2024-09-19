@@ -19,7 +19,7 @@
                     <thead>
                         <tr class="gray-table">
                             <th>
-                                <div align="center">ID</div>
+                                <div align="center">No</div>
                             </th>
                             <th>
                                 <div align="center">Username</div>
@@ -39,7 +39,7 @@
                         <tr>
                             <?php $i = 1 ?>
                             <?php foreach ($akses as $row): ?>
-                                <td><?php echo $row->id_akun; ?></td>
+                                <td><?php echo $i++ ?></td>
                                 <td><?php echo $row->username; ?></td>
                                 <td><?php echo $row->password; ?></td>
                                 <td><?php echo $row->level; ?></td>
