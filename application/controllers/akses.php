@@ -96,6 +96,16 @@ class Akses extends CI_Controller
             redirect('akses/index_akun');
         }
     }
+
+    function detail($username)
+    {
+        $data['title'] = "Detail Profile";
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/nav');
+        $data['akun'] = $this->authentication_model->select_by_id_query($username);
+        $this->load->view('nav/akun_detail', $data);
+        $this->load->view('layout/footer');
+    }
 }
 
 /* End of file welcome.php */

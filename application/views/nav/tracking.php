@@ -23,7 +23,6 @@
                         </div>
                     </div>
                 </form>
-
                 <?php
                 $cari = isset($_GET['cari']) ? ($_GET['cari']) : "";
                 if ($cari != '') {

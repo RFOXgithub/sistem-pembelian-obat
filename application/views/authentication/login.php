@@ -48,7 +48,9 @@
 
 				<div style="display: flex; align-items: center; justify-content: left; text-align: center;">
 					<img src="<?php echo base_url(); ?>img/logo_bnsp.jpg" height="150" width="200" style="margin-right: 20px;">
-					<h1 class="h1">Selamat Datang di <br> Toko Alat Kesehatan</h1>
+					<a href="http://localhost/WebsiteShopping-Toko-Alat-Kesehatan/produk">
+						<h1 class="h1">Selamat Datang di <br> Toko Alat Kesehatan</h1>
+					</a>
 				</div>
 
 				<?php echo form_open('authentication/process_login'); ?>

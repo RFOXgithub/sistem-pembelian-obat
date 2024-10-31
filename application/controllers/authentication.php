@@ -82,7 +82,7 @@ class Authentication extends CI_Controller
     public function logout()
     {
         $this->session->set_userdata(array(
-            'username' => ''
+            'nik' => ''
         ));
 
         $this->session->sess_destroy();

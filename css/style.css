@@ -3064,7 +3064,7 @@ ul.messagesList li span.date {
 }
 
 .span-card {
-    height: 285px;
+    height: 300px;
 	border: 2px solid #e0e0e0;
 	box-sizing: border-box;
 	margin-right: 33px;
@@ -3162,8 +3162,8 @@ background-color: #0056b3;
 
 .cart-icon {
     position: fixed;
-    bottom: 20px; 
-    right: 20px;  
+    bottom: 50px; 
+    right: 50px;  
     z-index: 1000;
 }
 
@@ -3177,4 +3177,8 @@ background-color: #0056b3;
 
 .cart-icon img:hover {
     transform: scale(1.1);
+}
+
+.harga-card {
+	font-weight: normal;
 }

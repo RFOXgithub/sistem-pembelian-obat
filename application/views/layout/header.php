@@ -90,14 +90,19 @@
                                 </li>
                                 <?php if (empty($username)) : ?>
                                     <li>
-                                        <a href="<?php echo base_url('authentication/register'); ?>">
-                                            <i class="halflings-icon user"></i>Daftar Akun
+                                        <a href="<?php echo base_url('authentication/process_login'); ?>">
+                                            <i class="halflings-icon lock"></i> Login
                                         </a>
-
+                                        <a href="<?php echo base_url('authentication/register'); ?>">
+                                            <i class="halflings-icon plus-sign"></i> Daftar Akun
+                                        </a>
                                     </li>
                                 <?php endif; ?>
                                 <?php if (!empty($username)) : ?>
                                     <li>
+                                        <a href="<?php echo base_url('akses/detail/' . $this->session->userdata('username')); ?>">
+                                            <i class="halflings-icon user"></i>Profile
+                                        </a>
                                         <a href="<?php echo base_url('authentication/logout'); ?>">
                                             <i class="halflings-icon off"></i>Logout
                                         </a>

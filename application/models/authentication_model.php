@@ -29,8 +29,14 @@ class Authentication_model extends CI_Model
         $this->db->join('akses', 'akses.id_akun = akun.id_akun', 'inner');
         $this->db->where('akun.username', $username);
         $query = $this->db->get();
-        return $query->row();
+
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return null;
+        }
     }
+
 
     public function getCityOptions()
     {
@@ -164,6 +170,20 @@ class Authentication_model extends CI_Model
             return FALSE;
         } else {
             return TRUE;
+        }
+    }
+
+    public function select_by_id_query($username)
+    {
+        $this->db->select('*');
+        $this->db->from('akun');
+        $this->db->where('username', $username);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->username;
+        } else {
+            return null;
         }
     }
 }
