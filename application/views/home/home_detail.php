@@ -15,7 +15,11 @@
                 <div class="detail-text">
                     <h1>Nama : <?php echo $product['nama_produk']; ?></h1>
                     <h1>Harga : Rp <?php echo number_format($product['harga'], 0, ',', '.'); ?></h1>
-                    <button class="btn btn-success" style="margin-top: 10px; width: 150px;">Buy</button>
+                    <button class="btn btn-success" style="margin-top: 10px; width: 150px;"
+                        onclick="location.href='<?php echo $this->session->userdata('username') ? site_url('cart/insertCart/' . $product['id_produk']) : site_url('authentication'); ?>'">
+                        Buy
+                    </button>
+
                 </div>
             </div>
         </div>

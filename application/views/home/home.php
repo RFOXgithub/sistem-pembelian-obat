@@ -33,15 +33,28 @@
                     <h4 class="text-left harga-card"> - Harga: Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></h4>
                     <div class="footer">
                         <button class="btn btn-primary" onclick="location.href='<?php echo site_url('produk/getProductDetails/' . $row['id_produk']); ?>'">View</button>
-                        <button class="btn btn-success">Buy</button>
+                        <button class="btn btn-success" onclick="location.href='<?php echo $this->session->userdata('username') ? site_url('cart/insertCart/' . $row['id_produk']) : site_url('authentication'); ?>'">
+                            Buy
+                        </button>
+
+
                     </div>
                 </div>
             <?php endforeach; ?>
 
             <div class="cart-icon">
-                <a href="<?php echo site_url('cart'); ?>">
-                    <img src="img/cart.png" alt="Keranjang" />
-                </a>
+                <?php if ($this->session->userdata('username')): ?>
+                    <a href="<?php echo site_url('cart'); ?>">
+                        <img src="img/cart.png" alt="Keranjang" />
+                        <?php if ($totalQuantity > 0): ?>
+                            <span class="cart-quantity"><?php echo $totalQuantity; ?></span>
+                        <?php endif; ?>
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo site_url('authentication'); ?>">
+                        <img src="img/cart.png" alt="Keranjang" />
+                    </a>
+                <?php endif; ?>
             </div>
 
         </div>

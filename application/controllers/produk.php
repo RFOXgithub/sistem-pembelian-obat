@@ -7,12 +7,23 @@ class Produk extends CI_Controller
         parent::__construct();
         $this->load->model('produk_model');
         $this->load->model('authentication_model');
+        $this->load->model('cart_model');
+
+        $input = $this->session->userdata('username');
+        $pengguna = $this->authentication_model->dataPengguna($input);
+        $this->id_akun = $pengguna ? $pengguna->id_akun : null;
     }
 
     public function index()
     {
         $data['title'] = "Product Page";
         $data['product'] = $this->produk_model->getAllProduct();
+
+        if ($this->id_akun) {
+            $data['totalQuantity'] = $this->cart_model->getTotalCartQuantity($this->id_akun);
+        } else {
+            $data['totalQuantity'] = [];
+        }
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/nav');
