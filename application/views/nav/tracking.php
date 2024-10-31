@@ -53,7 +53,11 @@
                             <?php if (!empty($list)): ?>
                                 <?php foreach ($list as $row) : ?>
                                     <tr>
-                                        <td><?php echo $n++; ?></td>
+                                        <td>
+                                            <div align="center">
+                                                <?php echo $n++; ?>
+                                            </div>
+                                        </td>
                                         <td><?php echo htmlspecialchars($row->nama_produk); ?></td>
                                         <td><?php echo htmlspecialchars($row->harga); ?></td>
                                         <td>
@@ -64,7 +68,9 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo site_url('produk/getProductDetails/' . $row->id_produk); ?>" class="btn btn-info">Detail</a>
+                                            <div align="center">
+                                                <a href="<?php echo site_url('produk/getProductDetails/' . $row->id_produk); ?>" class="btn btn-info">Detail</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -30,7 +30,7 @@
                 <div class="span-card statbox product-item" data-name="<?php echo htmlspecialchars($row['nama_produk']); ?>" data-price="<?php echo htmlspecialchars($row['harga']); ?>" ontablet="span6" ondesktop="span2">
                     <img src="<?php echo htmlspecialchars($row['gambar']); ?>" alt="Gambar Produk" class="span-card-img img-fluid">
                     <h4 class="text-center"><?php echo htmlspecialchars($row['nama_produk']); ?></h4>
-                    <h4 class="text-left harga-card">Harga: Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></h4>
+                    <h4 class="text-left harga-card"> - Harga: Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></h4>
                     <div class="footer">
                         <button class="btn btn-primary" onclick="location.href='<?php echo site_url('produk/getProductDetails/' . $row['id_produk']); ?>'">View</button>
                         <button class="btn btn-success">Buy</button>
