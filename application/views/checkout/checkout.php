@@ -38,10 +38,12 @@
                 </table>
 
                 <h3>Metode Pembayaran</h3>
-                <form action="<?php echo site_url('payment/process'); ?>" method="post">
+                <form action="<?php echo site_url('checkout/konfirmasi'); ?>" method="post">
+                    <input type="hidden" name="total_amount" value="<?php echo $finalTotal; ?>">
+
                     <div class="payment-method">
                         <label>
-                            <input type="radio" name="payment_method" value="debit_credit" required>
+                            <input type="radio" name="payment_method" value="Debit/Kredit" required>
                             Debit/Kredit
                         </label>
                         <div class="payment-details" id="debitCreditDetails" style="display: none; margin-top: 10px;">
@@ -57,16 +59,14 @@
                     </div>
                     <div class="payment-method">
                         <label>
-                            <input type="radio" name="payment_method" value="cod" required>
+                            <input type="radio" name="payment_method" value="Bayar Di Tempat" required>
                             Bayar di Tempat
                         </label>
                     </div>
 
                     <div style="text-align: right; margin-top: 20px;">
                         <button type="submit" class="btn btn-success">
-                            <a href="<?php echo site_url('checkout/konfirmasi/' . $row->id_produk); ?>" class="btn btn-success">
-                                <i class="icon-check"></i> Konfirmasi Pembayaran
-                            </a>
+                            <i class="icon-check"></i> Konfirmasi Pembayaran
                         </button>
                     </div>
                 </form>
@@ -79,12 +79,25 @@
     document.querySelectorAll('input[name="payment_method"]').forEach((input) => {
         input.addEventListener('change', function() {
             const debitCreditDetails = document.getElementById('debitCreditDetails');
-            if (this.value === 'debit_credit') {
-                debitCreditDetails.style.display = 'block';
-            } else {
-                debitCreditDetails.style.display = 'none';
-            }
+            debitCreditDetails.style.display = this.value === 'Debit/Kredit' ? 'block' : 'none';
         });
+    });
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+        const debitCreditDetails = document.getElementById('debitCreditDetails');
+
+        if (paymentMethod === 'Debit/Kredit') {
+            const cardName = document.querySelector('input[name="card_name"]').value;
+            const cardNumber = document.querySelector('input[name="card_number"]').value;
+            const cardExpiration = document.querySelector('input[name="card_expiration"]').value;
+            const cardCvv = document.querySelector('input[name="card_cvv"]').value;
+
+            if (!cardName || !cardNumber || !cardExpiration || !cardCvv) {
+                alert("Silakan lengkapi detail kartu jika memilih Debit/Kredit.");
+                event.preventDefault();
+            }
+        }
     });
 </script>
 <!-- End: Checkout Content -->

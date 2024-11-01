@@ -46,27 +46,23 @@ class Checkout extends CI_Controller
         $this->load->view('layout/footer');
     }
 
-    public function konfirmasi($total_amount, $payment_status, $payment_method)
+    public function konfirmasi()
     {
-        if ($this->id_akun) {
-            $data['cartItems'] = $this->cart_model->selectAllCartUser($this->id_akun);
-            $this->checkout_model->insert($this->id_akun, $total_amount, $payment_status, $payment_method);
-        }
-        redirect('checkout/afterPayment');
+        if ($this->id_akun && $this->input->server('REQUEST_METHOD') === 'POST') {
+            $total_amount = $this->input->post('total_amount');
+            $payment_method = $this->input->post('payment_method');
 
-        #divider
-
-        if ($this->id_akun) {
-            $existingCartItem = $this->cart_model->getCartItem($this->id_akun, $id_produk);
+            $existingCartItem = $this->cart_model->selectAllCartUser($this->id_akun);
 
             if ($existingCartItem) {
-                $newQuantity = $existingCartItem->quantity + 1;
-                $this->cart_model->updateCartQuantity($existingCartItem->id_cart, $newQuantity);
+                $this->checkout_model->insert($this->id_akun, $total_amount, $payment_method);
+                redirect('checkout/afterPayment');
             } else {
-                $this->cart_model->insert($this->id_akun, $id_produk, 1);
+                redirect('checkout');
             }
+        } else {
+            redirect('authentication/login');
         }
-        redirect('produk');
     }
 }
 
