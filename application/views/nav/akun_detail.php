@@ -3,6 +3,7 @@
 
     <div class="row-fluid sortable">
         <div class="box span11">
+            <div class="box-header"></div>
             <div class="box-content">
                 <form class="form-horizontal" role="form" action="" method="post">
                     <fieldset>
@@ -10,7 +11,6 @@
                             <label class="control-label">Username</label>
                             <div class="controls">
                                 <input type="text" class="span6" name="username" value="<?php echo $akun->username; ?>" readonly />
-
                             </div>
                         </div>
                         <div class="control-group">
@@ -29,7 +29,7 @@
                         <div class="control-group">
                             <label class="control-label">Number</label>
                             <div class="controls">
-                                <input type="number" class="span6" name="number" value="<?php echo $akun->number ?>" readonly />
+                                <input type="text" class="span6" name="number" value="<?php echo $akun->number ?>" readonly />
                             </div>
                         </div>
                         <div class="control-group">
@@ -47,7 +47,7 @@
                         <div class="control-group">
                             <label class="control-label">Gender</label>
                             <div class="controls">
-                                <span><?php echo $akun->gender; ?></span>
+                                <input type="text" class="span6" name="gender" value="<?php echo $akun->gender ?>" readonly />
                             </div>
                         </div>
                         <div class="control-group">
@@ -55,9 +55,6 @@
                             <div class="controls">
                                 <input type="email" class="span6" name="email" value="<?php echo $akun->email ?>" readonly />
                             </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="btn" onclick="window.history.back()">Batal</button>
                         </div>
                     </fieldset>
                 </form>
