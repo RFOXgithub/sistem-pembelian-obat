@@ -46,6 +46,7 @@ class Produk extends CI_Controller
 
     public function getProductDetails($id)
     {
+        $data['title'] = "Detail Page";
         $data['product'] = $this->produk_model->getProductById($id);
 
         $this->load->view('layout/header', $data);

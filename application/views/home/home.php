@@ -7,10 +7,17 @@
         $pengguna = null;
     }
     ?>
-
+    <h3>ERROR :
+        1. Katalog edit Gambar
+        2. Katalog tambah katalog
+        3. Title afterPayment
+        4. Sesuaikan Navigasi Admin
+    </h3>
     <div class="row-fluid span10">
         <div class="box span11">
-            <div class="box-header"></div>
+            <div class="box-header">
+                <h2><i class="icon-home"></i><span class="break"></span>Beranda</h2>
+            </div>
             <div class="page-header text-center">
                 <h1>Daftar Produk Toko Alat Kesehatan</h1>
             </div>

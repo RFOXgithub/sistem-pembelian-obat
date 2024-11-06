@@ -6,7 +6,9 @@
 
     <div class="row-fluid span10">
         <div class="box span11">
-            <div class="box-header"></div>
+            <div class="box-header">
+                <h2><i class="icon-home"></i><span class="break"></span>Detail Produk</h2>
+            </div>
             <div class="page-header text-center">
                 <h1>Detail Produk Toko Alat Kesehatan</h1>
             </div>

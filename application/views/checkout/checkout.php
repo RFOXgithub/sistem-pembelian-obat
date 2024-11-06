@@ -3,7 +3,7 @@
     <div class="row-fluid sortable">
         <div class="box span11">
             <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon shopping-cart"></i><span class="break"></span>Checkout</h2>
+                <h2><i class="icon-shopping-cart"></i><span class="break"></span>Checkout</h2>
             </div>
             <div class="box-content">
                 <h3>Ringkasan Pesanan</h3>

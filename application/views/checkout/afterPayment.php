@@ -14,10 +14,10 @@
     <div class="row-fluid sortable">
         <div class="box span11">
             <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon shopping-cart"></i><span class="break"></span>Konfirmasi Pembayaran</h2>
+                <h2><i class="icon-shopping-cart"></i><span class="break"></span>Konfirmasi Pembayaran</h2>
             </div>
             <div class="text-right" style="margin-top: 20px; margin-right:20px;">
-                <a href="<?php echo site_url('checkout/printInvoice'); ?>" class="btn btn-primary">Cetak Invoice</a>
+                <a href="<?php echo site_url('checkout/printInvoiceView'); ?>" class="btn btn-primary">Cetak Invoice</a>
             </div>
 
             <div class="box-content">
@@ -27,19 +27,16 @@
                         <p><strong>Nama:</strong> <?php echo htmlspecialchars($buyer->username); ?></p>
                         <p><strong>Alamat:</strong> <?php echo htmlspecialchars($buyer->address); ?></p>
                         <p><strong>No HP:</strong> <?php echo htmlspecialchars($buyer->number); ?></p>
+                        <p><strong>Email:</strong> <?php echo htmlspecialchars($buyer->email); ?></p>
+                        <p><strong>ID Paypal:</strong> <?php echo htmlspecialchars($buyer->id_paypal); ?></p>
                     </div>
 
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-6 text-left" style="padding-left: 50px;">
                         <h3>RINCIAN PEMBAYARAN</h3>
                         <p><strong>Metode Pembayaran:</strong> <?php echo htmlspecialchars($payment_method->payment_method); ?></p>
                         <p><strong>Tanggal Pembayaran:</strong> <?php echo date('d-m-Y H:i:s'); ?></p>
                     </div>
                 </div>
-
-
-
-
-
                 <br>
                 <h3>RINCIAN PEMBELIAN</h3>
                 <table class="table table-striped table-bordered">
@@ -85,9 +82,8 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <div class="text-right" style="margin-top: 20px;">
-                    <img src="<?php echo base_url('path/to/signature.png'); ?>" alt="Tanda Tangan" style="max-width: 200px;">
+                    <a href="<?php echo site_url('checkout/printInvoice'); ?>" class="btn btn-success">Kembali ke Halaman Utama</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,9 @@
 
     <div class="row-fluid sortable">
         <div class="box span11">
-            <div class="box-header"></div>
+            <div class="box-header">
+                <h2><i class="icon-user"></i><span class="break"></span>User Detail</h2>
+            </div>
             <div class="box-content">
                 <form class="form-horizontal" role="form" action="" method="post">
                     <fieldset>

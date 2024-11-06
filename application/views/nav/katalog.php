@@ -9,6 +9,7 @@
     <div class="row-fluid sortable">
         <div class="box span11">
             <div class="box-header" data-original-title>
+                <h2><i class="icon-gift"></i><span class="break"></span>Katalog</h2>
                 <div class="box-icon">
                     <?php if (!in_array($pengguna->level, ["Operator"])): ?>
                         <a href="<?php echo site_url('aset/add') ?>" class="halflings-icon white plus"></a>

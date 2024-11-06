@@ -4,6 +4,7 @@
     <div class="row-fluid sortable">
         <div class="box span11">
             <div class="box-header" data-original-title>
+                <h2><i class="icon-reorder"></i><span class="break"></span>Category Add</h2>
                 <div class="box-icon">
 
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
