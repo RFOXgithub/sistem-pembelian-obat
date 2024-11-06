@@ -1,5 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Checkout extends CI_Controller
 {
     function __construct()
@@ -12,6 +15,7 @@ class Checkout extends CI_Controller
         $input = $this->session->userdata('username');
         $pengguna = $this->authentication_model->dataPengguna($input);
         $this->id_akun = $pengguna ? $pengguna->id_akun : null;
+        require_once FCPATH . 'vendor/autoload.php';
     }
 
     public function index()
@@ -80,15 +84,11 @@ class Checkout extends CI_Controller
 
     public function printInvoice()
     {
-        // Load the TCPDF library
-        $this->load->library('tcpdf');
-
         $id_checkout = $this->session->userdata('id_checkout');
         $buyer = $this->authentication_model->select_by_real_id_query($this->id_akun);
         $checkoutItems = $this->checkout_model->selectAllCheckoutItemsUser($id_checkout);
         $payment_method = $this->checkout_model->getPaymentMethodByCheckoutId($id_checkout);
 
-        // Calculate totals
         $totalPrice = 0;
         foreach ($checkoutItems as $item) {
             $totalPrice += $item->harga * $item->quantity;
@@ -96,7 +96,6 @@ class Checkout extends CI_Controller
         $tax = $totalPrice * 0.05;
         $finalTotal = $totalPrice + $tax;
 
-        // Create new PDF document
         $pdf = new TCPDF();
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Your Company Name');
@@ -105,7 +104,6 @@ class Checkout extends CI_Controller
         $pdf->SetMargins(15, 15, 15);
         $pdf->AddPage();
 
-        // Set the content of the invoice
         $html = '
     <h1>Invoice</h1>
     <h3>INFORMASI PEMBELI</h3>
@@ -155,8 +153,40 @@ class Checkout extends CI_Controller
 
         $pdf->writeHTML($html, true, false, true, false, '');
 
-        // Close and output PDF document
-        $pdf->Output('invoice.pdf', 'I'); // Output to browser inline
+        $pdf->Output('invoice.pdf', 'I');
+    }
+
+    public function sendInvoice()
+    {
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'armenakyantigran642@gmail.com';
+            $mail->Password = 'xrce kxnb uhkq qbuq';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+          
+
+
+            //Recipients
+            $mail->setFrom('your-email@example.com', 'Your Name');
+            $mail->addAddress('rivalmanti399@gmail.com'); // Email buyer
+            $mail->Subject = 'Invoice for your purchase';
+            $mail->Body = 'Please find your invoice attached.';
+            $mail->addAttachment('a.pdf'); // Path to the generated PDF
+
+            // Send the email
+            if ($mail->send()) {
+                echo 'Message sent!';
+            } else {
+                echo 'Message could not be sent.';
+            }
+        } catch (Exception $e) {
+            echo "Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 }
 
