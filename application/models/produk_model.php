@@ -113,4 +113,9 @@ class Produk_model extends CI_Model
 
         return $options;
     }
+
+    public function tambah_katalog($data)
+    {
+        return $this->db->insert('produk', $data);
+    }
 }

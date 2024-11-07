@@ -8,6 +8,7 @@ class Produk extends CI_Controller
         $this->load->model('produk_model');
         $this->load->model('authentication_model');
         $this->load->model('cart_model');
+        $this->load->model('kategori_model');
 
         $input = $this->session->userdata('username');
         $pengguna = $this->authentication_model->dataPengguna($input);
@@ -99,6 +100,70 @@ class Produk extends CI_Controller
 
         $this->produk_model->update($id, $gambar);
         redirect('produk/index_katalog');
+    }
+
+    function addKatalog()
+    {
+        $data['title'] = "Tambah Data Aset";
+
+        $this->form_validation->set_rules('nama_produk', 'Nama Aset', 'required');
+        $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
+
+        $dbres = $this->db->order_by('nama_kategori', 'asc')->get('kategori');
+        $ddmenu = array();
+        foreach ($dbres->result_array() as $tablerow) {
+            $ddmenu[$tablerow['id_kategori']] = $tablerow['nama_kategori'];
+        }
+        $data['options'] = $ddmenu;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/nav');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('nav/katalog_add', $data);
+            $this->load->view('layout/footer');
+            return;
+        }
+
+        $config['upload_path'] = 'D:/Aplikasi/XAMPP/htdocs/WebsiteShopping-Toko-Alat-Kesehatan/lampiran/';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif|bmp';
+        $config['max_size'] = 10000;
+        $config['encrypt_name'] = TRUE;
+
+        $this->upload->initialize($config);
+
+        if (!empty($_FILES['gambar']['name'])) {
+            if (!$this->upload->do_upload('gambar')) {
+                $data['upload_error'] = $this->upload->display_errors();
+                log_message('error', 'File upload error: ' . $data['upload_error']);
+                $this->load->view('nav/katalog_add', $data);
+                $this->load->view('layout/footer');
+                return;
+            } else {
+                $upload_data = $this->upload->data();
+                $gambar = $upload_data['file_name']; 
+            }
+        } else {
+            $gambar = null;
+        }
+
+        $data_to_save = array(
+            'nama_produk' => $this->input->post('nama_produk'),
+            'id_kategori' => $this->input->post('id_kategori'),
+            'harga' => $this->input->post('harga'),
+            'jumlah' => $this->input->post('jumlah'),
+            'gambar' => $gambar 
+        );
+
+        if ($this->produk_model->tambah_katalog($data_to_save)) {
+            $this->session->set_flashdata('success', 'Data katalog berhasil ditambahkan.');
+            redirect('produk/index_katalog');
+        } else {
+            $this->session->set_flashdata('error', 'Terjadi kesalahan saat menambah data katalog.');
+            redirect('nav/katalog_add');
+        }
     }
 }
 

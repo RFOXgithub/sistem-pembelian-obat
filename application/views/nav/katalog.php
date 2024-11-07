@@ -12,7 +12,7 @@
                 <h2><i class="icon-gift"></i><span class="break"></span>Katalog</h2>
                 <div class="box-icon">
                     <?php if (!in_array($pengguna->level, ["Operator"])): ?>
-                        <a href="<?php echo site_url('aset/add') ?>" class="halflings-icon white plus"></a>
+                        <a href="<?php echo site_url('produk/addKatalog') ?>" class="halflings-icon white plus"></a>
                     <?php endif; ?>
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
