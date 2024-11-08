@@ -57,10 +57,9 @@
                 <?php if ($this->session->userdata('username')): ?>
                     <a href="<?php echo site_url('cart'); ?>">
                         <img src="img/cart.png" alt="Keranjang" />
-                        <?php if (isset($totalQuantity) && is_array($totalQuantity) && count($totalQuantity) > 0): ?>
-                            <span class="cart-quantity"><?php echo $totalQuantity[0]; ?></span>
+                        <?php if ($totalQuantity > 0): ?>
+                            <span class="cart-quantity"><?php echo $totalQuantity; ?></span>
                         <?php endif; ?>
-
                     </a>
                 <?php else: ?>
                     <a href="<?php echo site_url('authentication'); ?>">
