@@ -11,8 +11,6 @@
             ?>
 
             <?php if ($pengguna && $pengguna->level == "Admin") : ?>
-                <li><a href="<?php echo base_url(); ?>"><i class="icon-home"></i><span class="hidden-tablet"> Beranda</span></a></li>
-                <li><a href="<?php echo base_url(); ?>tracking"><i class="icon-search"></i><span class="hidden-tablet"> Pencarian</span></a></li>
                 <li><a href="<?php echo base_url(); ?>produk/index_katalog"><i class="icon-gift"></i><span class="hidden-tablet"> Katalog</span></a></li>
                 <li><a href="<?php echo base_url(); ?>kategori"><i class="icon-reorder"></i><span class="hidden-tablet"> Kategori</span></a></li>
                 <li><a href="<?php echo base_url(); ?>checkout/indexCheckoutAdmin"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Checkout</span></a></li>

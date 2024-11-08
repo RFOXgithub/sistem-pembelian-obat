@@ -9,7 +9,6 @@
     ?>
     <h3>ERROR :
         1. Title afterPayment
-        2. Sesuaikan Navigasi Admin
     </h3>
     <div class="row-fluid span10">
         <div class="box span11">
