@@ -357,6 +357,12 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+//Upload Image
+
+$config['upload_path'] = 'D:\Aplikasi\XAMPP\htdocs\WebsiteShopping-Toko-Alat-Kesehatan\img\produk';
+$config['allowed_types'] = 'jpeg|jpg|png|gif|bmp';
+$config['max_size'] = 10000;
+$config['encrypt_name'] = TRUE;
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

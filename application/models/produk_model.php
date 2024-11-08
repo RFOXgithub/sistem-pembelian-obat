@@ -88,12 +88,11 @@ class Produk_model extends CI_Model
 
     function update($id, $gambar)
     {
-        $nama_file = isset($gambar['file_name']) ? $gambar['file_name'] : null;
-
         $data = $_POST;
 
-        if ($nama_file) {
-            $data['gambar'] = $nama_file;
+
+        if ($gambar !== null) {
+            $data['gambar'] = $gambar;
         }
 
         $this->db->where('id_produk', $id)->update('produk', $data);

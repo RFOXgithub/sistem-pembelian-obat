@@ -72,27 +72,28 @@ class Produk extends CI_Controller
 
         $data['kategori_options'] = $this->produk_model->getKategoriOptions();
 
-        $config['upload_path']   = './img/produk_upload/';
-        $config['allowed_types'] = 'jpeg|jpg|png';
-        $config['max_size']      = 5000;
-        $config['encrypt_name']  = TRUE;
-
-        $this->load->library('upload', $config);
-
         if ($this->input->post() == NULL) {
             $this->load->view('nav/katalog_edit', $data);
             $this->load->view('layout/footer');
             return;
         }
 
+        $config['upload_path'] = 'D:\Aplikasi\XAMPP\htdocs\WebsiteShopping-Toko-Alat-Kesehatan\img\produk';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif|bmp';
+        $config['max_size'] = 10000;
+        $config['encrypt_name'] = TRUE;
+        $this->upload->initialize($config);
+
         if (!empty($_FILES['gambar']['name'])) {
             if (!$this->upload->do_upload('gambar')) {
                 $data['upload_error'] = $this->upload->display_errors();
+                log_message('error', 'File upload error: ' . $data['upload_error']);
                 $this->load->view('nav/katalog_edit', $data);
                 $this->load->view('layout/footer');
                 return;
             } else {
-                $gambar = $this->upload->data('file_name');
+                $upload_data = $this->upload->data();
+                $gambar = $upload_data['file_name'];
             }
         } else {
             $gambar = null;
@@ -127,23 +128,24 @@ class Produk extends CI_Controller
             return;
         }
 
-        $config['upload_path'] = 'D:/Aplikasi/XAMPP/htdocs/WebsiteShopping-Toko-Alat-Kesehatan/lampiran/';
+        $config['upload_path'] = 'D:\Aplikasi\XAMPP\htdocs\WebsiteShopping-Toko-Alat-Kesehatan\img\produk';
         $config['allowed_types'] = 'jpeg|jpg|png|gif|bmp';
         $config['max_size'] = 10000;
         $config['encrypt_name'] = TRUE;
-
         $this->upload->initialize($config);
 
         if (!empty($_FILES['gambar']['name'])) {
             if (!$this->upload->do_upload('gambar')) {
                 $data['upload_error'] = $this->upload->display_errors();
                 log_message('error', 'File upload error: ' . $data['upload_error']);
+                var_dump($data);
+                exit();
                 $this->load->view('nav/katalog_add', $data);
                 $this->load->view('layout/footer');
                 return;
             } else {
                 $upload_data = $this->upload->data();
-                $gambar = $upload_data['file_name']; 
+                $gambar = $upload_data['file_name'];
             }
         } else {
             $gambar = null;
@@ -154,7 +156,7 @@ class Produk extends CI_Controller
             'id_kategori' => $this->input->post('id_kategori'),
             'harga' => $this->input->post('harga'),
             'jumlah' => $this->input->post('jumlah'),
-            'gambar' => $gambar 
+            'gambar' => $gambar
         );
 
         if ($this->produk_model->tambah_katalog($data_to_save)) {

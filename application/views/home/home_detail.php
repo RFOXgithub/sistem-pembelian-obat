@@ -13,7 +13,7 @@
                 <h1>Detail Produk Toko Alat Kesehatan</h1>
             </div>
             <div class="detail-produk">
-                <img src="<?php echo base_url($product['gambar']); ?>" alt="Product Image" class="img-detail" />
+                <img src="<?php echo base_url('/img/produk/' . $product['gambar']); ?>" alt="Product Image" class="img-detail" />
                 <div class="detail-text">
                     <h1>Nama : <?php echo $product['nama_produk']; ?></h1>
                     <h1>Harga : Rp <?php echo number_format($product['harga'], 0, ',', '.'); ?></h1>

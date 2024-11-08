@@ -40,7 +40,7 @@
                         <div class="control-group">
                             <label class="control-label">Gambar</label>
                             <div class="controls">
-                                <input type="file" class="span6" name="gambar" />
+                                <input type="file" class="file span6" name="gambar" />
                                 <span style="color: red"><?= form_error('gambar'); ?></span>
                             </div>
                         </div>

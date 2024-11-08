@@ -23,40 +23,46 @@
                 </div>
             </div>
             <div class="box-content">
-                <table class="table table-striped table-bordered table-condensed bootstrap-datatable datatable">
-                    <thead>
-                        <tr class="gray-table">
-                            <th>
-                                <div align="center">No</div>
-                            </th>
-                            <th>
-                                <div align="center">Nama Kategori</div>
-                            </th>
-                            <?php if (!in_array($pengguna->level, ["Operator"])): ?>
+                <?php if (empty($kategori)): ?>
+                    <div class="alert alert-warning text-center">
+                        <strong>Kategori kosong!</strong> Silakan tambahkan kategori.
+                    </div>
+                <?php else: ?>
+                    <table class="table table-striped table-bordered table-condensed bootstrap-datatable datatable">
+                        <thead>
+                            <tr class="gray-table">
                                 <th>
-                                    <div align="center">Aksi</div>
+                                    <div align="center">No</div>
                                 </th>
-                            <?php endif; ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="odd gradeX">
-                            <?php $i = 1 ?>
-                            <?php foreach ($kategori as $row): ?>
-                                <td><?php echo $i++ ?></td>
-                                <td><?php echo $row->nama_kategori; ?></td>
+                                <th>
+                                    <div align="center">Nama Kategori</div>
+                                </th>
                                 <?php if (!in_array($pengguna->level, ["Operator"])): ?>
-                                    <td>
-                                        <div align="center">
-                                            <?php echo anchor('kategori/edit/' . $row->id_kategori, '<i class="icon-edit"></i>', array('class' => 'btn btn-mini btn-success')); ?>
-                                            <?php echo anchor('kategori/delete/' . $row->id_kategori, '<i class="icon-trash"></i>', array('class' => 'btn btn-mini btn-danger')); ?>
-                                        </div>
-                                    </td>
+                                    <th>
+                                        <div align="center">Aksi</div>
+                                    </th>
                                 <?php endif; ?>
-                        </tr>
-                    <?php endforeach ?>
-                    </tbody>
-                </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX">
+                                <?php $i = 1 ?>
+                                <?php foreach ($kategori as $row): ?>
+                                    <td><?php echo $i++ ?></td>
+                                    <td><?php echo $row->nama_kategori; ?></td>
+                                    <?php if (!in_array($pengguna->level, ["Operator"])): ?>
+                                        <td>
+                                            <div align="center">
+                                                <?php echo anchor('kategori/edit/' . $row->id_kategori, '<i class="icon-edit"></i>', array('class' => 'btn btn-mini btn-success')); ?>
+                                                <?php echo anchor('kategori/delete/' . $row->id_kategori, '<i class="icon-trash"></i>', array('class' => 'btn btn-mini btn-danger')); ?>
+                                            </div>
+                                        </td>
+                                    <?php endif; ?>
+                            </tr>
+                        <?php endforeach ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
             </div>
         </div><!--/span-->
 
