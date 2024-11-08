@@ -36,13 +36,18 @@ class Produk extends CI_Controller
 
     public function index_katalog()
     {
-        $data['title'] = "Katalog Page";
-        $data['product'] = $this->produk_model->getAllKatalog();
 
-        $this->load->view('layout/header', $data);
-        $this->load->view('layout/nav');
-        $this->load->view('nav/katalog', $data);
-        $this->load->view('layout/footer');
+        if ($this->session->userdata('isLogin') == FALSE) {
+            redirect('produk/index');
+        } else {
+            $data['title'] = "Katalog Page";
+            $data['product'] = $this->produk_model->getAllKatalog();
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/nav');
+            $this->load->view('nav/katalog', $data);
+            $this->load->view('layout/footer');
+        }
     }
 
     public function getProductDetails($id)

@@ -8,14 +8,17 @@ class Checkout extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('checkout_model');
-        $this->load->model('cart_model');
-        $this->load->model('authentication_model');
-
-        $input = $this->session->userdata('username');
-        $pengguna = $this->authentication_model->dataPengguna($input);
-        $this->id_akun = $pengguna ? $pengguna->id_akun : null;
-        require_once FCPATH . 'vendor/autoload.php';
+        if ($this->session->userdata('isLogin') == FALSE) {
+            redirect('produk/index');
+        } else {
+            $this->load->model('checkout_model');
+            $this->load->model('cart_model');
+            $this->load->model('authentication_model');
+            $input = $this->session->userdata('username');
+            $pengguna = $this->authentication_model->dataPengguna($input);
+            $this->id_akun = $pengguna ? $pengguna->id_akun : null;
+            require_once FCPATH . 'vendor/autoload.php';
+        }
     }
 
     public function index()

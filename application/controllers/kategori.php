@@ -7,7 +7,7 @@ class Kategori extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('isLogin') == FALSE) {
-            redirect('login/process_login');
+            redirect('produk/index');
         } else {
             $this->load->model('kategori_model');
             $this->load->model('authentication_model');

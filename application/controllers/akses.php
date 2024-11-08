@@ -6,7 +6,11 @@ class Akses extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('authentication_model');
+        if ($this->session->userdata('isLogin') == FALSE) {
+            redirect('produk/index');
+        } else {
+            $this->load->model('authentication_model');
+        }
     }
 
     public function index()
