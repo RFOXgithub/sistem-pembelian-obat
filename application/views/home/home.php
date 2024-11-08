@@ -7,9 +7,6 @@
         $pengguna = null;
     }
     ?>
-    <h3>ERROR :
-        1. Title afterPayment
-    </h3>
     <div class="row-fluid span10">
         <div class="box span11">
             <div class="box-header">

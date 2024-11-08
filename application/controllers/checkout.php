@@ -90,27 +90,9 @@ class Checkout extends CI_Controller
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function afterPayment()
     {
-        $data['title'] = "Checkout Page";
+
         //$this->sendInvoice();
 
         $id_checkout = $this->session->userdata('id_checkout');
@@ -130,8 +112,10 @@ class Checkout extends CI_Controller
             'payment_method' => $payment_method,
         ];
 
+        $data['title'] = "Checkout Page";
+
         $this->load->view('layout/header', $data);
-        //$this->load->view('layout/nav');
+        $this->load->view('layout/nav');
         $this->load->view('checkout/afterPayment', $data);
         $this->load->view('layout/footer');
     }
