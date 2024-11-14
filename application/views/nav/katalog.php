@@ -61,7 +61,7 @@
                                     <td><?php echo $row->jumlah; ?></td>
                                     <td>
                                         <div align="center">
-                                            <img src="<?php echo base_url(); ?>/<?php echo '/img/produk/' . $row->gambar ?>" style="width: 100px; height: auto;"><br>
+                                            <img src="<?php echo base_url(); ?><?php echo '/img/produk/' . $row->gambar ?>" style="width: 100px; height: auto;"><br>
                                         </div>
                                     </td>
                                     <td>
