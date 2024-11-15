@@ -20,13 +20,13 @@ class Produk extends CI_Controller
         # $start_time = microtime(true);
         $data['product'] = $this->produk_model->getAllProduct();
         # $end_time = microtime(true);
-         #$execution_time = $end_time - $start_time;
-         #echo "Execution Time: " . $execution_time . " seconds";
+        #$execution_time = $end_time - $start_time;
+        #echo "Execution Time: " . $execution_time . " seconds";
 
-         #$start_memory = memory_get_usage();
-         #$end_memory = memory_get_usage();
-         #$memory_used = $end_memory - $start_memory;
-         #echo "Memory Usage: " . $memory_used . " bytes";
+        #$start_memory = memory_get_usage();
+        #$end_memory = memory_get_usage();
+        #$memory_used = $end_memory - $start_memory;
+        #echo "Memory Usage: " . $memory_used . " bytes";
         #exit();
 
         $data['title'] = "Product Page";
@@ -124,6 +124,7 @@ class Produk extends CI_Controller
         $data['title'] = "Tambah Data Aset";
 
         $this->form_validation->set_rules('nama_produk', 'Nama Aset', 'required');
+        $this->form_validation->set_rules('deskripsi_produk', 'Deskripsi', 'required');
         $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
@@ -170,6 +171,7 @@ class Produk extends CI_Controller
         $data_to_save = array(
             'nama_produk' => $this->input->post('nama_produk'),
             'id_kategori' => $this->input->post('id_kategori'),
+            'deskripsi_produk' => $this->input->post('deskripsi_produk'),
             'harga' => $this->input->post('harga'),
             'jumlah' => $this->input->post('jumlah'),
             'gambar' => $gambar

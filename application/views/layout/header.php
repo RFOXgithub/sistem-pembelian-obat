@@ -70,7 +70,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand"><img src="<?php echo base_url(); ?>img/logo_bnsp_cutted.jpg" width="200" /></a>
+                <a class="brand">
+                    <img src="<?php echo base_url(); ?>img/logo_bnsp_cutted.jpg" width="200" />
+                </a>
 
                 <!-- start: Header Menu -->
                 <div class="nav-no-collapse header-nav">

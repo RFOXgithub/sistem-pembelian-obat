@@ -34,6 +34,12 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label">Deskripsi</label>
+                            <div class="controls">
+                                <input type="text" class="span6" name="deskripsi_produk" />
+                            </div>
+                        </div>
+                        <div class="control-group">
                             <label class="control-label">Jumlah</label>
                             <div class="controls">
                                 <input type="number" class="span6" name="jumlah" />
