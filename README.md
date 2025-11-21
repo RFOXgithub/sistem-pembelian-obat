@@ -3,6 +3,7 @@ Update Error 21/11/2025!
 
 - Gambar tidak tampil pada bagian pencarian
 - Error ketika mengganti gambar produk pada katalog
+- css pada Edit Checkout Data masih kurang rapi atau kepotong
 
 ---------------------
 
