@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']    = 'http://localhost/WebsiteShopping-Toko-Alat-Kesehatan/';
+$config['base_url']    = 'http://localhost/sistem-pembelian-obat/';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2024 at 06:24 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Nov 21, 2025 at 06:41 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `akses` (
   `password` varchar(50) NOT NULL,
   `level` enum('Admin','Customer') NOT NULL DEFAULT 'Customer',
   `modified_Date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `akses`
@@ -59,7 +59,7 @@ CREATE TABLE `akun` (
   `gender` enum('Male','Female') NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `modified_date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `akun`
@@ -82,7 +82,7 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -97,14 +97,15 @@ CREATE TABLE `checkout` (
   `payment_status` enum('Pending','Paid','Declined') NOT NULL DEFAULT 'Pending',
   `checkout_Date` timestamp NOT NULL DEFAULT current_timestamp(),
   `payment_method` enum('Debit/Kredit','Bayar Di Tempat') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `checkout`
 --
 
 INSERT INTO `checkout` (`id_checkout`, `id_akun`, `total_amount`, `payment_status`, `checkout_Date`, `payment_method`) VALUES
-(1, 12, '467250.00', 'Pending', '2024-11-07 22:37:24', 'Bayar Di Tempat');
+(1, 12, '467250.00', 'Pending', '2024-11-07 22:37:24', 'Bayar Di Tempat'),
+(2, 12, '178500.00', 'Pending', '2025-11-20 23:39:40', 'Bayar Di Tempat');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ CREATE TABLE `checkout_detail` (
   `nama_produk` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
   `harga` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `checkout_detail`
@@ -143,7 +144,8 @@ CREATE TABLE `checkout_detail` (
 
 INSERT INTO `checkout_detail` (`id_checkout_detail`, `id_produk`, `id_checkout`, `nama_produk`, `quantity`, `harga`) VALUES
 (1, 1, 1, 'Vitamin C 1000mg', 3, '120000.00'),
-(2, 5, 1, 'Thermometer Digital', 1, '85000.00');
+(2, 5, 1, 'Thermometer Digital', 1, '85000.00'),
+(3, 5, 2, 'Thermometer Digital', 2, '85000.00');
 
 -- --------------------------------------------------------
 
@@ -155,7 +157,7 @@ CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL,
   `modified_Date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategori`
@@ -176,7 +178,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `modified_Date`) VALUES
 CREATE TABLE `kota` (
   `id_kota` int(11) NOT NULL,
   `nama_kota` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kota`
@@ -225,56 +227,39 @@ CREATE TABLE `produk` (
   `harga` int(50) NOT NULL,
   `jumlah` int(50) NOT NULL,
   `gambar` varchar(50) NOT NULL,
+  `deskripsi_produk` text DEFAULT NULL,
   `modified_date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `harga`, `jumlah`, `gambar`, `modified_date`) VALUES
-(1, 1, 'Vitamin C 1000mg', 120000, 50, '4b18f1d3197ae9d0b85db96c8b057ca1.png', '2024-11-08 09:27:37'),
-(2, 1, 'Omega 3 Fish Oil', 180000, 30, '9a2f33d02389b2370be3ec12fd7afcc0.jpg', '2024-11-08 09:28:16'),
-(3, 2, 'Serum Vitamin C', 250000, 40, '4fa5340dcfd1655f9feb979fb9eb5492.jpg', '2024-11-08 09:29:16'),
-(4, 2, 'Moisturizer Cream', 150000, 60, 'fe3626dbf84f3f5705f88eaa0df1fe86.jpg', '2024-11-08 09:29:56'),
-(5, 3, 'Thermometer Digital', 85000, 100, '310beb8f44576f4368ca1d2dbe923dd3.jpg', '2024-11-08 09:30:20'),
-(6, 3, 'Oximeter Pulse', 200000, 20, '56c8ca23c81b49ba48100bcf9604f35f.jpg', '2024-11-08 09:31:30'),
-(7, 4, 'Paracetamol 500mg', 25000, 200, 'eb9b35a694b29d610ff13f11e67a0364.jpg', '2024-11-08 09:31:59'),
-(8, 4, 'Ibuprofen 400mg', 35000, 150, '27aca4ec5661fc8bbadf80aab6cd5ab6.png', '2024-11-08 09:32:35'),
-(9, 1, 'Multivitamin Adult', 140000, 80, 'f818cfc63fdaead9ec5707e3f752e03a.jpg', '2024-11-08 09:33:49'),
-(10, 1, 'Probiotik 10 Billion CFU', 100000, 120, '4d7a81b9d2483c294809d8e829e885dd.jpg', '2024-11-08 09:34:22'),
-(11, 2, 'Face Mask Sheet', 50000, 200, 'e6e55637c09ff52b856b7fb359ae3fc5.jpg', '2024-11-08 09:36:14'),
-(12, 2, 'Sunscreen SPF 50', 180000, 90, 'f5b5e126d62faa568f0149f0975d870a.jpg', '2024-11-08 09:36:55'),
-(13, 3, 'Stethoscope Digital', 350000, 40, '8accff2be07eaea1e7102b6c0b6a21ba.jpg', '2024-11-08 09:37:28'),
-(14, 3, 'Blood Pressure Monitor', 450000, 30, 'd8d88216958d51712b7d88e7662572e8.jpg', '2024-11-08 09:38:05'),
-(15, 4, 'Antiseptic Liquid 100ml', 45000, 150, '7e3486714b22f17da69838511942fc9d.jpg', '2024-11-08 09:38:32');
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `harga`, `jumlah`, `gambar`, `deskripsi_produk`, `modified_date`) VALUES
+(1, 1, 'Vitamin C 1000mg', 120000, 50, '4b18f1d3197ae9d0b85db96c8b057ca1.png', 'Vitamin C 1000mg membantu meningkatkan daya tahan tubuh dan menjaga kesehatan kulit.', '2025-11-21 12:35:14'),
+(2, 1, 'Omega 3 Fish Oil', 180000, 30, '9a2f33d02389b2370be3ec12fd7afcc0.jpg', 'Omega 3 Fish Oil mendukung kesehatan jantung, otak, dan fungsi saraf.', '2025-11-21 12:35:14'),
+(3, 2, 'Serum Vitamin C', 250000, 40, '4fa5340dcfd1655f9feb979fb9eb5492.jpg', 'Serum Vitamin C mencerahkan kulit dan mengurangi tanda penuaan dini.', '2025-11-21 12:35:14'),
+(4, 2, 'Moisturizer Cream', 150000, 60, 'fe3626dbf84f3f5705f88eaa0df1fe86.jpg', 'Moisturizer Cream melembapkan kulit dan menjaga kelembutan sepanjang hari.', '2025-11-21 12:35:14'),
+(5, 3, 'Thermometer Digital', 85000, 98, '310beb8f44576f4368ca1d2dbe923dd3.jpg', 'Thermometer Digital untuk pengukuran suhu tubuh secara cepat dan akurat.', '2025-11-21 12:39:40'),
+(6, 3, 'Oximeter Pulse', 200000, 20, '56c8ca23c81b49ba48100bcf9604f35f.jpg', 'Oximeter Pulse mengukur saturasi oksigen dan denyut nadi secara praktis.', '2025-11-21 12:35:14'),
+(7, 4, 'Paracetamol 500mg', 25000, 200, 'eb9b35a694b29d610ff13f11e67a0364.jpg', 'Paracetamol 500mg meredakan nyeri dan menurunkan demam dengan cepat.', '2025-11-21 12:35:14'),
+(8, 4, 'Ibuprofen 400mg', 35000, 150, '27aca4ec5661fc8bbadf80aab6cd5ab6.png', 'Ibuprofen 400mg digunakan untuk meredakan nyeri, peradangan, dan demam.', '2025-11-21 12:35:14'),
+(9, 1, 'Multivitamin Adult', 140000, 80, 'f818cfc63fdaead9ec5707e3f752e03a.jpg', 'Multivitamin Adult memenuhi kebutuhan vitamin harian untuk tubuh sehat.', '2025-11-21 12:35:14'),
+(10, 1, 'Probiotik 10 Billion CFU', 100000, 120, '4d7a81b9d2483c294809d8e829e885dd.jpg', 'Probiotik 10 Billion CFU mendukung kesehatan pencernaan dan sistem imun.', '2025-11-21 12:35:14'),
+(11, 2, 'Face Mask Sheet', 50000, 200, 'e6e55637c09ff52b856b7fb359ae3fc5.jpg', 'Face Mask Sheet menutrisi kulit wajah dan menjaga kelembapan optimal.', '2025-11-21 12:35:14'),
+(12, 2, 'Sunscreen SPF 50', 180000, 90, 'f5b5e126d62faa568f0149f0975d870a.jpg', 'Sunscreen SPF 50 melindungi kulit dari paparan sinar UV berbahaya.', '2025-11-21 12:35:14'),
+(13, 3, 'Stethoscope Digital', 350000, 40, '8accff2be07eaea1e7102b6c0b6a21ba.jpg', 'Stethoscope Digital memudahkan pemeriksaan suara jantung dan paru-paru.', '2025-11-21 12:35:14'),
+(14, 3, 'Blood Pressure Monitor', 450000, 30, 'd8d88216958d51712b7d88e7662572e8.jpg', 'Blood Pressure Monitor mengukur tekanan darah secara akurat di rumah.', '2025-11-21 12:35:14'),
+(15, 4, 'Antiseptic Liquid 100ml', 45000, 150, '7e3486714b22f17da69838511942fc9d.jpg', 'Antiseptic Liquid 100ml membersihkan dan mencegah infeksi pada luka.', '2025-11-21 12:35:15');
 
 -- --------------------------------------------------------
 
 --
 -- Structure for view `checkoutview`
 --
-DROP TABLE IF EXISTS checkoutview;
+DROP TABLE IF EXISTS `checkoutview`;
 
-CREATE VIEW `checkoutview` AS 
-SELECT 
-    `checkout`.`id_checkout`,
-    `checkout`.`id_akun`,
-    `checkout`.`total_amount`,
-    `checkout`.`payment_status`,
-    `checkout`.`checkout_Date`,
-    `checkout`.`payment_method`,
-    CASE 
-        WHEN `checkout`.`payment_method` = 'Debit/Kredit' THEN 'Debit/Kredit'
-        WHEN `checkout`.`payment_method` = 'Bayar Di Tempat' THEN 'Bayar Di Tempat'
-        ELSE NULL 
-    END AS `PaymentMethodChar`
-FROM `checkout`;
-
-
-
-
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `checkoutview`  AS  select `checkout`.`id_checkout` AS `id_checkout`,`checkout`.`id_akun` AS `id_akun`,`checkout`.`total_amount` AS `total_amount`,`checkout`.`payment_status` AS `payment_status`,`checkout`.`checkout_Date` AS `checkout_Date`,`checkout`.`payment_method` AS `payment_method`,case when `checkout`.`payment_method` = 'Debit/Kredit' then 'Debit/Kredit' when `checkout`.`payment_method` = 'Bayar Di Tempat' then 'Bayar Di Tempat' else NULL end AS `PaymentMethodChar` from `checkout` ;
 
 --
 -- Indexes for dumped tables
@@ -343,25 +328,25 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkout_detail`
 --
 ALTER TABLE `checkout_detail`
-  MODIFY `id_checkout_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_checkout_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kota`
@@ -373,7 +358,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
